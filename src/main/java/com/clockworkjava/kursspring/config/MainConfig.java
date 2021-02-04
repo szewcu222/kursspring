@@ -16,11 +16,11 @@ public class MainConfig {
         return new KnightRepository();
     }
 
-    @Bean("DBKnightRepo")
-    @Profile("prod")
-    public IKnightRepository createDBKnightRepository() {
-        return new DBKnightRepository();
-    }
+//    @Bean("DBKnightRepo")
+//    @Profile("prod")
+//    public IKnightRepository createDBKnightRepository() {
+//        return new DBKnightRepository();
+//    }
 
 
 }
