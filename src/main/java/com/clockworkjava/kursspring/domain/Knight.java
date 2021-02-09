@@ -3,9 +3,11 @@ package com.clockworkjava.kursspring.domain;
 
 public class Knight {
 
+    private int id;
     private String name = "Lancelot";
-
     private int age = 29;
+    private int level;
+
     Quest quest;
 
     public Knight() {
@@ -29,6 +31,30 @@ public class Knight {
 
     public int getAge() {
         return age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     @Override

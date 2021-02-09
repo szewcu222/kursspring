@@ -1,9 +1,7 @@
 package com.clockworkjava.kursspring.config;
 
-import com.clockworkjava.kursspring.domain.repository.DBKnightRepository;
 import com.clockworkjava.kursspring.domain.repository.IKnightRepository;
 import com.clockworkjava.kursspring.domain.repository.KnightRepository;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;

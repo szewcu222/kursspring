@@ -1,8 +1,38 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Knights</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+<!--    <script th:src="@{/webjars/bootstrap/3.4.1/js/bootstrap.min.js}"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<p>Knights will be here</p>
+    <div class="container">
+        <p>Knights will be here</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Age</td>
+                    <td>Level</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody th:each="knight : ${knights}">
+                <tr>
+                    <td th:text="${knight.getName()}"></td>
+                    <td th:text="${knight.getAge()}"></td>
+                    <td th:text="${knight.getLevel()}"></td>
+                    <td><a th:href="${'/knight?id='+knight.id}">Details</a></td>
+                    <td><a th:href="${'/knight/delete/'+knight.id}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-default" th:href="@{/newKnight}">Create new Knight</a>
+        <p th:text="${hello}"></p>
+    </div>
 </body>
 </html>

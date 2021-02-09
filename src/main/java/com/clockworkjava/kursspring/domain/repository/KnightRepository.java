@@ -4,14 +4,12 @@ import com.clockworkjava.kursspring.domain.Knight;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class KnightRepository implements IKnightRepository {
 
-    Map<String, Knight> knights = new HashMap<>();
+    Map<Integer, Knight> knights = new HashMap<>();
 
 
     public KnightRepository() {
@@ -20,8 +18,14 @@ public class KnightRepository implements IKnightRepository {
 
 
     @Override
-    public void createKnight(String name, int age){
-        knights.put(name, new Knight(name, age));
+    public void createKnight(String name, int age) {
+        Knight newKnight = new Knight(name, age);
+        newKnight.setId(getNewId());
+        knights.put(newKnight.getId(), newKnight);
+    }
+
+    public void createKnight(Knight knight){
+        knights.put(knight.getId(), knight);
     }
 
     @Override
@@ -30,13 +34,13 @@ public class KnightRepository implements IKnightRepository {
     }
 
     @Override
-    public Knight getKnight(String name) {
-        return knights.get(name);
+    public Optional<Knight> getKnight(String name) {
+        return knights.values().stream().filter(k -> name.equals(k.getName())).findAny();
     }
 
     @Override
-    public void deleteKnight(String name) {
-        knights.remove(name);
+    public void deleteKnight(Integer id) {
+        knights.remove(id);
     }
 
     @Override
@@ -44,6 +48,21 @@ public class KnightRepository implements IKnightRepository {
     public void build() {
         createKnight("Lancelot", 29);
         createKnight("Percival", 25);
+    }
+
+    @Override
+    public Knight getKnightById(Integer id) {
+        return knights.get(id);
+    }
+
+    public int getNewId() {
+        if(knights.isEmpty()){
+            return 0;
+        }
+        else {
+            //return knights.keySet().size()-1;
+            return knights.keySet().stream().max(Comparator.naturalOrder()).get()+1;
+        }
     }
 
     @Override

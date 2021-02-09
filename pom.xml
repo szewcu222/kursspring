@@ -8,6 +8,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
+	<repositories>
+		<repository>
+			<id>my-repo1</id>
+			<name>your custom repo</name>
+			<url>https://mvnrepository.com/</url>
+		</repository>
+	</repositories>
+
 	<name>Kurs Spring dla poczatkujacych</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -42,6 +50,16 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.4.1</version>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.annotation</groupId>
