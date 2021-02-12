@@ -11,6 +11,7 @@ public class KnightRepository implements IKnightRepository {
 
     Map<Integer, Knight> knights = new HashMap<>();
 
+    public String dupa = "asa";
 
     public KnightRepository() {
         System.out.println("Castle default constructor");
@@ -25,7 +26,7 @@ public class KnightRepository implements IKnightRepository {
     }
 
     public void createKnight(Knight knight){
-        knights.put(knight.getId(), knight);
+        knights.put(knights.keySet().stream().max(Comparator.naturalOrder()).get()+1, knight);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.clockworkjava.kursspring;
 
+import com.clockworkjava.component.TimeComponent;
 import com.clockworkjava.kursspring.domain.repository.IKnightRepository;
 import com.clockworkjava.kursspring.domain.repository.KnightRepository;
 import com.clockworkjava.kursspring.domain.repository.QuestRepository;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 
 @Component
 public class Starter implements CommandLineRunner {
@@ -23,6 +26,9 @@ public class Starter implements CommandLineRunner {
         this.questService = questService;
     }
 
+    @Autowired
+    TimeComponent timeComponent;
+
     @Override
     public void run(String... strings) throws Exception {
 
@@ -35,6 +41,9 @@ public class Starter implements CommandLineRunner {
         questService.assignRandomQuest("Percival");
 
         System.out.println(knightRepository);
+
+//        LocalDateTime time = timeComponent.getTime();
+
         System.out.println("Starter.run");
 
     }

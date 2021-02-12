@@ -26,7 +26,7 @@ public class KnightService {
     }
 
     public void saveKnight(Knight knight) {
-        knightRepository.createKnight(knight);
+        knightRepository.createKnight(knight.getName(), knight.getAge());
     }
 
     public Knight getKnight(Integer id) {
