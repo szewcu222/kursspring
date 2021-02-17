@@ -16,12 +16,15 @@
         TIME - <span th:text="${timeComponent.getTime()}"></span>
         GOLD - <span th:text="${playerInformation.getGold()}"></span>
 
+        <a th:href="${'/checkQuests'}">Update quests</a>
+
         <table class="table">
             <thead>
                 <tr>
                     <td>Name</td>
                     <td>Age</td>
                     <td>Level</td>
+                    <td>Quest</td>
                     <td></td>
                 </tr>
             </thead>
@@ -30,6 +33,11 @@
                     <td th:text="${knight.getName()}"></td>
                     <td th:text="${knight.getAge()}"></td>
                     <td th:text="${knight.getLevel()}"></td>
+                    <td>
+                       <span th:if="${knight.getQuest()==null}">No current quests</span> <a th:if="${knight.getQuest()==null}" th:href="${'/assignQuest?knightId='+knight.getId()}">Assign quest</a>
+                       <span th:if="${knight.getQuest()!=null}" th:text="${knight.getQuest().getDescription() + ' ' + knight.getQuest().isStarted()}"></span>
+
+                    </td>
                     <td><a th:href="${'/knight?id='+knight.id}">Details</a></td>
                     <td><a th:href="${'/knight/delete/'+knight.id}">Delete</a></td>
                 </tr>

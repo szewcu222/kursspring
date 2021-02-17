@@ -1,11 +1,18 @@
 package com.clockworkjava.kursspring.domain;
 
 
+import com.sun.istack.internal.Nullable;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
+@Setter
+@Getter
 public class Knight {
 
     private int id;
@@ -18,7 +25,7 @@ public class Knight {
     @Range(min = 18, max = 60, message = "Nie spelnia")
     private int age;
 
-    private int level;
+    private int level = 1;
 
     Quest quest;
 
@@ -26,47 +33,16 @@ public class Knight {
         System.out.println("Knight default constructor");
     }
 
-
     public Knight(String name, int age) {
         this.name = name;
         this.age = age;
     }
 
     public void setQuest(Quest quest) {
-        System.out.println("Knight.setQuest(Quest quest " + quest + ")");
+        if(Objects.nonNull(quest)) {
+            quest.setStarted(true);
+        }
         this.quest = quest;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     @Override

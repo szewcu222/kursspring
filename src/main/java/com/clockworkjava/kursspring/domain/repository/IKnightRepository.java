@@ -1,6 +1,7 @@
 package com.clockworkjava.kursspring.domain.repository;
 
 import com.clockworkjava.kursspring.domain.Knight;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;
@@ -21,4 +22,7 @@ public interface IKnightRepository {
     Knight getKnightById(Integer id);
 
     void createKnight(Knight knight);
+
+    default void updateKnight(int id, Knight knight) { throw new NotImplementedException();}
+
 }

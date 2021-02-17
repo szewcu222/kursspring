@@ -1,6 +1,7 @@
 package com.clockworkjava.kursspring.domain.repository;
 
 import com.clockworkjava.kursspring.domain.Knight;
+import com.clockworkjava.kursspring.utils.Ids;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -21,12 +22,13 @@ public class KnightRepository implements IKnightRepository {
     @Override
     public void createKnight(String name, int age) {
         Knight newKnight = new Knight(name, age);
-        newKnight.setId(getNewId());
+        newKnight.setId(Ids.generateNewId(knights.keySet()));
         knights.put(newKnight.getId(), newKnight);
     }
 
     public void createKnight(Knight knight){
-        knights.put(knights.keySet().stream().max(Comparator.naturalOrder()).get()+1, knight);
+        knight.setId(Ids.generateNewId(knights.keySet()));
+        knights.put(knight.getId(), knight);
     }
 
     @Override
@@ -45,6 +47,11 @@ public class KnightRepository implements IKnightRepository {
     }
 
     @Override
+    public void updateKnight(int id, Knight knight) {
+        knights.put(id, knight);
+    }
+    
+    @Override
     @PostConstruct
     public void build() {
         createKnight("Lancelot", 29);
@@ -61,8 +68,7 @@ public class KnightRepository implements IKnightRepository {
             return 0;
         }
         else {
-            //return knights.keySet().size()-1;
-            return knights.keySet().stream().max(Comparator.naturalOrder()).get()+1;
+            return Ids.generateNewId(knights.keySet());
         }
     }
 

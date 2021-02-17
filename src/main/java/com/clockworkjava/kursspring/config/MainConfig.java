@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 public class MainConfig {
 
-    @Bean("KnightRepo")
-    @Profile("dev")
-    public IKnightRepository createKnightRepository() {
-        return new KnightRepository();
-    }
+//    @Bean("KnightRepo")
+//    @Profile("dev")
+//    public IKnightRepository createKnightRepository() {
+//        return new KnightRepository();
+//    }
 
 //    @Bean("DBKnightRepo")
 //    @Profile("prod")

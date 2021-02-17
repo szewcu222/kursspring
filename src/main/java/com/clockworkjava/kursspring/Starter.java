@@ -15,12 +15,12 @@ import java.time.LocalDateTime;
 @Component
 public class Starter implements CommandLineRunner {
 
-    IKnightRepository knightRepository;
+    KnightRepository knightRepository;
     QuestRepository questRepository;
     QuestService questService;
 
     @Autowired
-    public Starter(@Qualifier("KnightRepo") IKnightRepository knightRepository, QuestRepository questRepository, QuestService questService) {
+    public Starter(KnightRepository knightRepository, QuestRepository questRepository, QuestService questService) {
         this.knightRepository = knightRepository;
         this.questRepository = questRepository;
         this.questService = questService;
@@ -37,8 +37,8 @@ public class Starter implements CommandLineRunner {
         questRepository.createRandomQuest();
         questRepository.createRandomQuest();
 
-        questService.assignRandomQuest("Lancelot");
         questService.assignRandomQuest("Percival");
+//        questService.assignRandomQuest("Lancelot");
 
         System.out.println(knightRepository);
 

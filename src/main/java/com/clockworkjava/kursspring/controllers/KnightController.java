@@ -18,14 +18,24 @@ import java.util.List;
 @Controller
 public class KnightController {
 
-    @Autowired
     TimeComponent timeComponent;
-
-    @Autowired
     PlayerInformation playerInformation;
+    KnightService knightService;
 
     @Autowired
-    KnightService knightService;
+    public void setTimeComponent(TimeComponent timeComponent) {
+        this.timeComponent = timeComponent;
+    }
+
+    @Autowired
+    public void setPlayerInformation(PlayerInformation playerInformation) {
+        this.playerInformation = playerInformation;
+    }
+
+    @Autowired
+    public void setKnightService(KnightService knightService) {
+        this.knightService = knightService;
+    }
 
     @GetMapping("/knights")
     public String getKnights(Model model) {
@@ -35,7 +45,6 @@ public class KnightController {
         model.addAttribute("timeComponent", timeComponent);
         model.addAttribute("playerInformation", playerInformation);
         return "knights";
-//        return new ResponseEntity<>(knights.toString(), HttpStatus.OK);
     }
 
     @GetMapping("/knight")
@@ -47,7 +56,6 @@ public class KnightController {
         return "knight-details";
     }
 
-//    @RequestMapping("createKnight")
     @GetMapping("newKnight")
     public String newKnight(Model model) {
         Knight knight = new Knight();
